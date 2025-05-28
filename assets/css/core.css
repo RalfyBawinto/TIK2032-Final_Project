@@ -1,0 +1,779 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap");
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container */
+.container {
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  background: linear-gradient(to bottom, #4facfe, #00f2fe);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.sidebar .sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sidebar .dark-toggle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  position: static;
+  width: 100%;
+  justify-content: end;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Toggle Button */
+.dark-toggle {
+  margin-top: auto;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dark-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #f7fafd;
+  overflow-y: auto;
+  /* min-height: calc(100vh - 40px); */
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 1rem; */
+}
+
+.profile-link {
+  text-decoration: none;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.05);
+}
+
+/* page profile */
+.profile-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.back-image {
+  position: absolute;
+  top: 2rem; /* Sama tinggi dengan header */
+  left: 1rem;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.profile-main {
+  padding: 2rem 1rem;
+  background-color: #f7fafd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-image-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #4facfe;
+  object-fit: cover;
+}
+
+.upload-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #4facfe;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.profile-info {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.logout-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.logout-button {
+  margin-top: 2rem;
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+/* end page profile */
+
+.batal-btn {
+  background-color: #e74c3c;
+  color: white; /* penting agar teks terlihat di background merah */
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.batal-btn:hover {
+  background-color: #c0392b;
+}
+
+.main-content footer {
+  margin-top: auto; /* Mendorong footer ke bawah jika konten sedikit */
+  padding-top: 1rem; /* Jarak antara konten (misal <p>) dan footer */
+}
+
+footer {
+  text-align: center;
+}
+
+footer small {
+  font-size: 0.8rem;
+  color: #000000;
+}
+
+.main-content h1 {
+  color: #333;
+  margin-bottom: 1rem;
+  margin-top: 1.3rem;
+}
+
+/* === Status Warna === */
+.status-tersedia {
+  color: green;
+  font-weight: bold;
+}
+
+.status-dibooking {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-dipakai {
+  color: red;
+  font-weight: bold;
+}
+
+/* === Tombol CRUD Style === */
+.batal-btn {
+  background-color: #c0392b;
+  color: #fff;
+}
+.btn-edit {
+  background-color: #f1c40f; /* kuning */
+  margin-bottom: 0.5rem;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background-color: #d4ac0d;
+}
+
+.btn-delete {
+  background-color: #e74c3c; /* merah */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+/* === DARK MODE === */
+body.dark-mode {
+  background-color: #121212;
+}
+
+body.dark-mode .main-content {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+/* body.dark-mode .batal-btn {
+  background-color: #c0392b;
+  color: #fff;
+} */
+
+body.dark-mode .batal-btn:hover {
+  background-color: #a93226;
+}
+
+body.dark-mode .sidebar {
+  background: linear-gradient(to bottom, #232526, #414345);
+}
+
+body.dark-mode .sidebar nav ul li a {
+  color: #f1f1f1;
+}
+
+body.dark-mode .sidebar nav ul li a:hover,
+body.dark-mode .sidebar nav ul li a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dark-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f1f1f1;
+}
+
+body.dark-mode .main-content h1 {
+  color: #fff;
+}
+
+body.dark-mode .profile-icon {
+  filter: brightness(0) invert(1); /* putihkan ikon profil */
+}
+
+body.dark-mode .main-content footer small {
+  color: #fff;
+}
+.form-container {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.form-container button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+.form-container .batal-btn {
+  background-color: #c0392b !important;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.form-container .batal-btn:hover {
+  background-color: #a93226 !important;
+}
+
+/* === Tabel Pengguna === */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-table thead {
+  background-color: #4facfe;
+  color: white;
+  text-align: left;
+}
+
+.user-table th,
+.user-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.user-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.user-table td:last-child {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.user-table button {
+  padding: 5px 10px;
+  background: #efefef;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.user-table button.btn-edit,
+.user-table button.btn-delete {
+  all: unset;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.user-table button.btn-edit {
+  background-color: #f1c40f;
+  color: white;
+}
+
+.user-table button.btn-edit:hover {
+  background-color: #d4ac0d;
+}
+
+.user-table button.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.user-table button.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+/* Dark mode table */
+body.dark-mode .user-table {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+}
+
+body.dark-mode .user-table thead {
+  background-color: #333;
+}
+
+body.dark-mode .user-table th,
+body.dark-mode .user-table td {
+  border: 1px solid #555;
+}
+
+body.dark-mode .user-table tbody tr:hover {
+  background-color: #444;
+}
+
+/* === Pemesanan Table === */
+.lapangan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.lapangan-table thead {
+  background-color: #4facfe;
+  color: white;
+}
+
+.lapangan-table th,
+.lapangan-table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.lapangan-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.lapangan-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Dark Mode */
+body.dark-mode .form-container {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+}
+
+body.dark-mode .lapangan-table {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+}
+
+body.dark-mode .lapangan-table thead {
+  background-color: #333;
+}
+
+body.dark-mode .lapangan-table tbody tr:hover {
+  background-color: #3b3b3b;
+}
+
+.modal {
+  display: flex; /* ubah dari 'none' ke 'flex' untuk align center */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* sedikit lebih gelap */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Responsive Sidebar & Layout */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  z-index: 1200;
+}
+.menu-toggle .bar {
+  width: 28px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(7.5px, 7.5px);
+  background: #e74c3c;
+}
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7.5px, -7.5px);
+  background: #e74c3c;
+}
+
+.developer-section {
+  padding: 20px 0;
+}
+
+.developer-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Hover Style untuk Developer Cards */
+.dev-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #e8f8ff; /* Warna terang saat hover di light mode */
+}
+
+/* Dark mode hover */
+body.dark-mode .dev-card:hover {
+  background-color: #444; /* Warna gelap saat hover di dark mode */
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.dev-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: calc(33.333% - 40px); /* Untuk tampilan default: 3 kartu di atas */
+  transition: all 0.3s ease;
+}
+
+.dev-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .dev-card {
+  background: #333;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .dev-card {
+    width: calc(50% - 40px); /* 2 kartu per baris */
+  }
+}
+
+@media (max-width: 480px) {
+  .dev-card {
+    width: calc(100% - 40px); /* 1 kartu per baris */
+  }
+}
+
+/* Sidebar responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+  .sidebar {
+    position: fixed;
+    left: -360px;
+    top: 0;
+    /* width: 250px; */
+    height: 100vh;
+    z-index: 1100;
+    transition: left 0.3s;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    /* padding-top: 2rem; */
+  }
+  .sidebar.sidebar-open {
+    left: 0;
+  }
+
+  .logo {
+    margin-top: 5rem;
+  }
+
+  .main-content {
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  .dashboard-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+/* Responsive Table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+.lapangan-table {
+  min-width: 600px;
+}
+
+/* Responsive Map */
+.map-container-responsive {
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.map-container-responsive iframe {
+  min-width: 320px;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* Sidebar profile link style */
+.sidebar .profile-link {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 0 0;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar .profile-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sidebar .profile-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1); /* putihkan ikon profil */
+}
+
+/* Dark mode for menu icon */
+body.dark-mode .menu-toggle .bar {
+  background: #f1f1f1;
+}
+body.dark-mode .menu-toggle.open .bar:nth-child(1),
+body.dark-mode .menu-toggle.open .bar:nth-child(3) {
+  background: #e74c3c;
+}

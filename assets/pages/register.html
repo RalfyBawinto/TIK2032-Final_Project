@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FutsalChamp</title>
+    <!-- logo futsal-champion -->
+    <link
+      rel="shortcut icon"
+      href="../img/icon/logo_futsal-champion.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/index.css?index.css?v=<?= time(); ?>" />
+  </head>
+
+  <body>
+    <div class="register-container">
+      <h1>Register</h1>
+      <form action="#" method="POST">
+        <div class="input-group">
+          <label for="username">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="input-group password-group">
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required />
+            <img
+              src="../img/icon/eye-off.png"
+              alt="Toggle Password"
+              id="togglePassword"
+            />
+          </div>
+        </div>
+        <div class="input-group password-group">
+          <label for="password">Confirm Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+            />
+            <img
+              src="../img/icon/eye-off.png"
+              alt="Toggle Password"
+              id="toggleConfirmPassword"
+            />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">-- Pilih Role --</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+        <button type="submit">Sign Up</button>
+        <p class="register">
+          Already have an account? <a href="../../index.html">Login here</a>
+        </p>
+      </form>
+    </div>
+
+    <footer>
+      <small>© 2025 FutsalChamp. All rights reserved.</small>
+    </footer>
+  </body>
+
+  <script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch("../php/index.php?action=register", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Registrasi berhasil, silakan login.");
+            window.location.href = "../../index.html";
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch((error) => {
+          alert("Terjadi kesalahan saat mengirim data.");
+          console.error("Error:", error);
+        });
+    });
+
+    const togglePassword = document.getElementById("togglePassword");
+    const toggleConfirm = document.getElementById("toggleConfirmPassword");
+
+    const passwordInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirm-password");
+
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+        passwordInput.type = isHidden ? "text" : "password";
+        togglePassword.src = isHidden
+          ? "../img/icon/eye-on.png"
+          : "../img/icon/eye-off.png";
+      });
+    }
+
+    if (toggleConfirm && confirmInput) {
+      toggleConfirm.addEventListener("click", () => {
+        const isHidden = confirmInput.type === "password";
+        confirmInput.type = isHidden ? "text" : "password";
+        toggleConfirm.src = isHidden
+          ? "../img/icon/eye-on.png"
+          : "../img/icon/eye-off.png";
+      });
+    }
+  </script>
+</html>

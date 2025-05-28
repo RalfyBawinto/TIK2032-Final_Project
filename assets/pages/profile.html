@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FutsalChamp</title>
+    <!-- logo futsal-champion -->
+    <link
+      rel="shortcut icon"
+      href="../img/icon/logo_futsal-champion.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/core.css?v=<?= time(); ?>" />
+  </head>
+  <body>
+    <main class="profile-main">
+      <!-- Tombol Kembali -->
+      <img
+        src="../img/icon/back.png"
+        alt="Kembali"
+        class="back-image"
+        onclick="goToDashboard()"
+      />
+      <!-- Header: Tombol Kembali + Judul -->
+      <div class="profile-header">
+        <h1>Profile</h1>
+      </div>
+
+      <!-- Foto Profil -->
+      <div class="profile-image-container">
+        <img
+          id="profileImage"
+          src="https://placehold.co/200x200"
+          alt="Foto Profil"
+          class="profile-image"
+        />
+        <button onclick="triggerFileInput()" class="upload-button">
+          <i class="fas fa-camera"></i>
+        </button>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          class="hidden"
+          onchange="handleImageChange(event)"
+        />
+      </div>
+
+      <!-- Info Profil -->
+      <!-- Tombol Logout di dalam profile-info -->
+      <div class="profile-info">
+        <h2 id="profileName" style="text-align: center">Admin</h2>
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" readonly />
+        </div>
+        <div class="form-group">
+          <label for="emailInput">Email</label>
+          <input id="emailInput" type="email" readonly />
+        </div>
+        <div class="logout-container">
+          <button onclick="logout()" class="logout-button">Logout</button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function goToDashboard() {
+        window.location.href = "../pages/dashboard.php";
+      }
+
+      function triggerFileInput() {
+        document.getElementById("fileInput").click();
+      }
+
+      function handleImageChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById("profileImage").src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function logout() {
+        fetch("../php/index.php?action=logout")
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Logout berhasil!");
+              window.location.href = "../../index.html";
+            }
+          });
+      }
+
+      // Ambil data user saat halaman dimuat
+      window.addEventListener("DOMContentLoaded", () => {
+        fetch("../php/index.php?action=check-session")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.error) {
+              alert(data.error);
+              window.location.href = "../../index.html"; // redirect jika belum login
+            } else {
+              document.getElementById("profileName").textContent = data.role;
+              document.getElementById("nameInput").value = data.name;
+              document.getElementById("emailInput").value = data.email;
+            }
+          })
+          .catch((error) => {
+            console.error("Gagal ambil data:", error);
+          });
+      });
+    </script>
+  </body>
+</html>
